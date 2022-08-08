@@ -1,0 +1,53 @@
+.demonstration-container {
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.panel {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10px;
+    background-color: black;
+    border: 4px solid #80F8FF;
+}
+
+.message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: bold;
+    z-index: -1;
+    opacity: 0;
+    transition: .4s;
+}
+
+.message-active {
+    opacity: 1;
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.panel button {
+    background-color: #000;
+}
+
+@media (min-width: 768px) {
+    .demonstration-container {
+        padding: 8% 5%;
+    }
+
+    .panel {
+        max-width: 520px;
+    }
+}
