@@ -1,16 +1,18 @@
-import React, {useState, useEffect, useRef, createRef, createContext} from 'react';
+import React, { useState, useEffect, useRef, createRef, createContext } from 'react';
 import DemonstrationContainer from './components/DemonstrationContainer/DemonstrationContainer';
 import UserContainer from './components/UserContainer/UserContainer';
 import Menu from './components/Menu/Menu';
 import Results from './components/Results/Results';
-import {drawId, wait, equals, showMessage} from "./utils/helpers"
-import {ids, messages} from "./utils/data"
+import { drawId, wait, equals, showMessage } from "./utils/helpers"
+import { ids, messages } from "./utils/data"
 
 import styles from './App.module.css'
+import buttonStyles from './components/Button/Button.module.css'
+import demonstrationStyles from './components/DemonstrationContainer/DemonstrationContainer.module.css'
 
 export const GameContext = createContext();
 
-function App () {
+function App() {
     const [drawIds, setDrawIds] = useState([]);
     const [userChoice, setUserChoice] = useState([]);
     const [rounds, setRounds] = useState(5);
@@ -35,9 +37,9 @@ function App () {
     const showPattern = async () => {
         for (let i = 0; i < drawIds.length; i++) {
             await wait(200);
-            demonstrationRefs.current[drawIds[i]].current.classList.add("Button_pushed__sl8tk")
+            demonstrationRefs.current[drawIds[i]].current.classList.add(buttonStyles.pushed)
             await wait(500);
-            demonstrationRefs.current[drawIds[i]].current.classList.remove("Button_pushed__sl8tk")
+            demonstrationRefs.current[drawIds[i]].current.classList.remove(buttonStyles.pushed)
         }
         await wait(200);
         setIsClickable(true)
@@ -52,19 +54,19 @@ function App () {
 
     const choiceButton = async (id) => {
         setUserChoice(prev => [...prev, id])
-       userRefs.current[id].current.classList.add("Button_pushed__sl8tk");
+        userRefs.current[id].current.classList.add(buttonStyles.pushed);
         await wait(200);
-       userRefs.current[id].current.classList.remove("Button_pushed__sl8tk");
+        userRefs.current[id].current.classList.remove(buttonStyles.pushed);
     }
 
     const wrongPattern = async () => {
-        await showMessage(messageRef, messages.wrong.text, messages.wrong.color)
+        await showMessage(messageRef, messages.wrong.text, messages.wrong.color, demonstrationStyles["message-active"])
         await wait(200);
         showPattern()
     }
 
     const correctPattern = async () => {
-        await showMessage(messageRef, messages.correct.text, messages.correct.color)
+        await showMessage(messageRef, messages.correct.text, messages.correct.color, demonstrationStyles["message-active"])
         await wait(200);
         drawNew();
         showPattern();
@@ -94,7 +96,7 @@ function App () {
         showPattern()
     }, [drawIds])
 
-    const value = {ids, drawIds, userChoice, rounds, isPopup, setIsPopup, isWin, setIsWin, isClickable, setIsClickable, drawNew, handleChange, userRefs, demonstrationRefs, messageRef}
+    const value = { ids, drawIds, userChoice, rounds, isPopup, setIsPopup, isWin, setIsWin, isClickable, setIsClickable, drawNew, handleChange, userRefs, demonstrationRefs, messageRef }
 
     return (
         <GameContext.Provider value={value}>
