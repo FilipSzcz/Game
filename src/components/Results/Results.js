@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { GameContext } from "../../App"
-
 import styles from './Results.module.css'
 
 const Results = () => {

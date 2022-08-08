@@ -5,7 +5,6 @@ import Menu from './components/Menu/Menu';
 import Results from './components/Results/Results';
 import { drawId, wait, equals, showMessage } from "./utils/helpers"
 import { ids, messages } from "./utils/data"
-
 import styles from './App.module.css'
 import buttonStyles from './components/Button/Button.module.css'
 import demonstrationStyles from './components/DemonstrationContainer/DemonstrationContainer.module.css'
