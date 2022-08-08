@@ -76,11 +76,8 @@ function App() {
             setIsClickable(false)
             if (equals(drawIds, userChoice)) {
                 if (rounds === userChoice.length) {
-                    setDrawIds([]);
-                    setUserChoice([])
-                    setIsPopup(true)
+                    resetGame();
                     setIsWin(true)
-                    setRounds(5)
                 } else {
                     correctPattern()
                 }
